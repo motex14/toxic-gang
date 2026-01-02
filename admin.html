@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Admin Styles -->
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+  body { background: #0f0f0f; color: #fff; min-height: 100vh; }
+
+  h1, h2 { font-weight: 600; text-align: center; }
+
+  /* Login Section */
+  #loginSection {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; gap: 15px;
+  }
+
+  #loginSection input, #loginSection button {
+    padding: 12px 20px; border-radius: 30px; border: none;
+    font-size: 16px;
+  }
+  #loginSection input { width: 250px; }
+  #loginSection button { background: linear-gradient(120deg,#ff6bcb,#8224e3); color: #fff; cursor: pointer; font-weight: 600; }
+
+  /* Admin Panel */
+  #adminPanel { display: none; padding: 20px; max-width: 1200px; margin: auto; }
+
+  /* Upload Section */
+  .upload-section {
+    background: #1a1a1a; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px #8224e3;
+    display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 40px;
+  }
+  .upload-section input[type=file] { padding: 6px; border-radius: 10px; background: #222; color: #fff; border: none; }
+  .upload-section input[type=text] { padding: 8px; border-radius: 20px; width: 200px; border: none; }
+  .upload-section button { padding: 10px 30px; border-radius: 30px; border: none; background: linear-gradient(120deg,#ff6bcb,#8224e3); color: #fff; cursor: pointer; font-weight: 600; }
+
+  /* Uploaded Photos Grid */
+  #uploadedPhotos { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 20px; }
+
+  .gallery-card {
+    background: #111; border-radius: 15px; padding: 10px;
+    box-shadow: 0 0 15px #8224e3; text-align: center; transition: transform 0.3s;
+  }
+  .gallery-card:hover { transform: scale(1.05); }
+  .gallery-card img { width: 100%; border-radius: 12px; margin-bottom: 8px; }
+  .gallery-card p { font-size: 14px; margin-bottom: 6px; color: #ffdd59; }
+  .gallery-card button, .gallery-card a {
+    padding: 6px 12px; border-radius: 20px; font-size: 13px; border: none; cursor: pointer; margin: 2px;
+    text-decoration: none; font-weight: 600;
+  }
+  .gallery-card button { background: #ff3f3f; color: #fff; }
+  .gallery-card a { background: #00c6ff; color: #000; }
+
+  @media(max-width:768px){
+    .upload-section input[type=text], .upload-section input[type=file] { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Login Section -->
+<div id="loginSection">
+  <h1>Admin Login</h1>
+  <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+  <button id="loginBtn">Login</button>
+</div>
+
+<!-- Admin Panel -->
+<div id="adminPanel">
+  <h2>Upload Photos</h2>
+  <div class="upload-section">
+    <input type="file" id="groupUpload" multiple>
+    <input type="text" id="uploaderName" placeholder="Your Name">
+    <button id="uploadBtn">Upload Photo(s)</button>
+  </div>
+
+  <h2>All Uploaded Photos</h2>
+  <div id="uploadedPhotos"></div>
+</div>
+
+<script type="module" src="js/firebase-upload.js"></script>
+
+
+<script>
+  const loginBtn = document.getElementById('loginBtn');
+  const adminPassword = document.getElementById('adminPassword');
+  const loginSection = document.getElementById('loginSection');
+  const adminPanel = document.getElementById('adminPanel');
+
+  const PASSWORD = "1234"; // Change your admin password
+
+  loginBtn.addEventListener('click', ()=>{
+    if(adminPassword.value === PASSWORD){
+      loginSection.style.display = 'none';
+      adminPanel.style.display = 'block';
+    } else {
+      alert("Wrong password!");
+    }
+  });
+</script>
+</body>
+</html>

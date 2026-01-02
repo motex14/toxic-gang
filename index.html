@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motex Portfolio</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDK -->
+<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+<!-- BUBBLES BACKGROUND -->
+<div id="bubbles-container"></div>
+
+<!-- HOME SECTION -->
+<div class="center-container">
+  <div class="frame">
+    <img src="./picture/profile.jpeg" alt="Profile">
+  </div>
+  <div class="welcome-text">Welcome Motex</div>
+  <div class="buttons">
+    <a href="https://drive.google.com/drive/folders/1t1Bteo5dncVYF1EZB-cHKreJJ9emfTFx" target="_blank" class="btn">My Documents</a>
+    <a href="#" id="openPictures" class="btn">Pictures</a>
+    <a href="#" id="openGroup" class="btn">Group Photos</a>
+  </div>
+</div>
+
+<!-- FRIENDS MODAL -->
+<div id="picturesModal">
+  <button class="back-btn" id="backFromFriends">Back</button>
+  <div class="cards-container" id="cardsContainer"></div>
+</div>
+
+<!-- FRIEND HISTORY MODAL -->
+<div id="historyModal">
+  <button class="back-btn" id="backFromHistory">Back</button>
+  <div id="historyContent"></div>
+</div>
+
+<!-- GROUP PHOTO MODAL -->
+<div id="groupModal">
+  <button class="back-btn" id="backFromGroup">Back</button>
+  <div id="uploadSection">
+    <input type="file" id="groupUpload" multiple>
+    <input type="text" id="uploaderName" placeholder="Your Name">
+    <button id="uploadBtn" class="btn">Upload Photo(s)</button>
+    <a href="admin.html" class="btn" style="background:red;">Admin Panel</a>
+  
+  </div>
+  <div class="gallery-grid" id="groupGallery"></div>
+</div>
+
+<!-- Main JS -->
+<script src="script.js"></script>
+
+<!-- Firebase Upload JS -->
+<script type="module" src="firebase-upload.js"></script>
+</body>
+</html>
