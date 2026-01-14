@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Toxic Gallery</title>
+
+<style>
+:root{
+  --bg:#f2f4ff;
+  --card:#ffffff;
+  --text:#111;
+  --primary:#6a5cff;
+  --secondary:#ff7a18;
+}
+
+body.dark{
+  --bg:#0f1220;
+  --card:#1a1d33;
+  --text:#eee;
+}
+
+body{
+  margin:0;
+  padding:15px;
+  font-family:Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+h1{text-align:center;color:var(--primary)}
+
+.topbar{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.toggle{
+  cursor:pointer;
+  padding:6px 14px;
+  border-radius:20px;
+  background:var(--card);
+}
+
+/* Boxes */
+.box{
+  max-width:420px;
+  margin:15px auto;
+  background:var(--card);
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:10px;
+  border:none;
+}
+
+input{background:#eaeaff}
+body.dark input{background:#2a2d4d;color:#fff}
+
+button{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.3);
+}
+
+/* Gallery */
+.gallery{
+  max-width:1200px;
+  margin:25px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:var(--card);
+  padding:10px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  animation:fadeUp .4s ease both;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  border-radius:14px;
+  cursor:pointer;
+  transition:.3s;
+}
+.card img:hover{transform:scale(1.05)}
+
+.uploader{
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.hidden{display:none}
+
+/* Preview */
+#preview{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+#preview img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <h1 style="text-align: center;">Toxic Gallery</h1>
+  <div class="toggle" onclick="toggleDark()">🌙 Dark</div>
+</div>
+
+<!-- 🔍 SEARCH BAR -->
+<div class="box">
+  <input 
+    id="searchInput" 
+    placeholder="🔍 Search by uploader name..."
+    oninput="filterImages()"
+  >
+</div>
+
+<!-- Upload -->
+<div class="box">
+  <h1>Upload Toxic Image Here</h1>
+  <input id="username" placeholder="Your name"><br>
+  <input type="file" id="file" accept="image/*">
+  <button onclick="upload()">Upload</button>
+</div>
+
+<!-- Admin -->
+<div class="box">
+  <button onclick="toggleAdmin()">Admin Panel</button>
+  <div id="adminBox" class="hidden">
+    <input type="password" id="adminPass" placeholder="Admin password">
+    <button onclick="adminLogin()">Login</button>
+  </div>
+</div>
+
+<div id="gallery" class="gallery"></div>
+
+<!-- Preview -->
+<div id="preview" onclick="closePreview()">
+  <img id="previewImg">
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbzgs2WU58yqqJG0ra2nhmqzPQKvHibPDuBKYV6oaDCiqMTBNxqtR692U09Yxj7rsEI_SQ/exec";
+const ADMIN_PASSWORD = "Motex_248052";
+let isAdmin = false;
+let allImages = []; // 🔴 store all images
+
+/* Dark mode */
+if(localStorage.dark==="1") document.body.classList.add("dark");
+function toggleDark(){
+  document.body.classList.toggle("dark");
+  localStorage.dark = document.body.classList.contains("dark")?"1":"0";
+}
+
+/* Admin */
+function toggleAdmin(){
+  adminBox.classList.toggle("hidden");
+}
+function adminLogin(){
+  if(adminPass.value===ADMIN_PASSWORD){
+    isAdmin=true;
+    alert("Admin logged in");
+    render(allImages);
+  }else alert("Wrong password");
+}
+
+/* Upload */
+function upload(){
+  const fileInput=document.getElementById("file");
+  const nameInput=document.getElementById("username");
+  const file=fileInput.files[0];
+  const name=nameInput.value.trim();
+
+  if(!file||!name) return alert("Name & image required");
+
+  const reader=new FileReader();
+  reader.onload=()=>{
+    fetch(API_URL,{
+      method:"POST",
+      body:JSON.stringify({
+        filename:name+"_"+file.name,
+        mimeType:file.type,
+        file:reader.result.split(",")[1]
+      })
+    }).then(()=>{
+      nameInput.value="";
+      fileInput.value="";
+      loadImages();
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+/* Load images */
+function loadImages(){
+  fetch(API_URL)
+  .then(r=>r.json())
+  .then(data=>{
+    allImages = data;
+    render(allImages);
+  });
+}
+
+/* Render gallery */
+function render(list){
+  gallery.innerHTML="";
+  list.forEach(img=>{
+    const uploader = img.name.split("_")[0] || "Unknown";
+    const thumb = `https://drive.google.com/thumbnail?id=${img.id}&sz=w1000`;
+
+    gallery.innerHTML += `
+    <div class="card">
+      <div class="uploader">👤 ${uploader}</div>
+
+      <img src="${thumb}" loading="lazy"
+           onclick="preview('${thumb}')">
+
+      <a href="https://drive.google.com/uc?id=${img.id}&export=download">
+        <button>Download</button>
+      </a>
+
+      ${isAdmin?`<button onclick="del('${img.id}')">Delete</button>`:""}
+    </div>`;
+  });
+}
+
+/* 🔍 SEARCH FILTER */
+function filterImages(){
+  const q = searchInput.value.toLowerCase();
+  const filtered = allImages.filter(img =>
+    img.name.toLowerCase().startsWith(q)
+  );
+  render(filtered);
+}
+
+/* Delete */
+function del(id){
+  if(!confirm("Delete image?"))return;
+  fetch(API_URL,{
+    method:"POST",
+    body:JSON.stringify({
+      action:"delete",
+      fileId:id,
+      password:ADMIN_PASSWORD
+    })
+  }).then(()=>loadImages());
+}
+
+/* Preview */
+function preview(url){
+  previewImg.src=url;
+  preview.style.display="flex";
+}
+function closePreview(){
+  preview.style.display="none";
+}
+
+loadImages();
+</script>
+
+</body>
+</html>

@@ -5,63 +5,295 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motex Portfolio</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 
-<!-- Firebase SDK -->
-<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+<!-- <style>
+.password-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.password-box{
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  width:300px;
+  text-align:center;
+}
+.password-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
+.password-box button{
+  padding:8px 15px;
+  margin:5px;
+  cursor:pointer;
+}
+</style> -->
+
+<style>
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+/* PASSWORD MODAL */
+.password-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+/* GLASS BOX */
+.password-box{
+  width:340px;
+  max-width:92%;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  padding:35px 25px 28px;
+  border-radius:18px;
+  text-align:center;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 25px 70px rgba(0,0,0,.6);
+  animation:scaleIn .35s ease;
+}
+
+/* ADMIN IMAGE */
+.admin-avatar{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(255,255,255,.35);
+  margin:-70px auto 10px;
+  display:block;
+}
+
+/* INPUT */
+.input-wrap{position:relative;margin-top:10px}
+.password-box input{
+  width:100%;
+  padding:14px 44px 14px 14px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+}
+.password-box input::placeholder{color:#aaa}
+
+/* SHOW PASSWORD ICON */
+.show-pass{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+}
+.show-pass svg{
+  width:22px;
+  height:22px;
+  stroke:#9ad9ff;
+  fill:none;
+  stroke-width:2;
+  transition:.3s;
+}
+.show-pass:hover svg{stroke:#fff;transform:scale(1.1)}
+
+/* BUTTONS */
+.password-box button{
+  padding:11px 26px;
+  border-radius:25px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  margin:8px 5px 0;
+  transition:.3s;
+}
+#submitPassword{
+  background:linear-gradient(135deg,#00f2fe,#4facfe);
+  color:#000;
+}
+#closePassword{
+  background:rgba(255,255,255,.15);
+  color:#fff;
+}
+
+/* ERROR */
+#passwordError{
+  color:#ff6b6b;
+  margin-top:10px;
+  display:none;
+}
+
+/* SHAKE */
+.shake{animation:shake .4s}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+}
+
+@keyframes scaleIn{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+</style>
 </head>
+
 <body>
 
-<!-- BUBBLES BACKGROUND -->
+<!-- BACKGROUND -->
 <div id="bubbles-container"></div>
 
-<!-- HOME SECTION -->
+<!-- HOME -->
 <div class="center-container">
   <div class="frame">
     <img src="./picture/profile.jpeg" alt="Profile">
   </div>
+
   <div class="welcome-text">Welcome Motex</div>
+
   <div class="buttons">
-    <a href="https://drive.google.com/drive/folders/1t1Bteo5dncVYF1EZB-cHKreJJ9emfTFx" target="_blank" class="btn">My Documents</a>
+    <a href="#" id="openDocuments" class="btn">My Document</a>
     <a href="#" id="openPictures" class="btn">Pictures</a>
-    <a href="#" id="openGroup" class="btn">Group Photos</a>
+    <a href="./upload.html" id="openGroup" class="btn">Group Photos</a>
   </div>
 </div>
 
-<!-- FRIENDS MODAL -->
+<!-- OTHER MODALS -->
 <div id="picturesModal">
   <button class="back-btn" id="backFromFriends">Back</button>
   <div class="cards-container" id="cardsContainer"></div>
 </div>
 
-<!-- FRIEND HISTORY MODAL -->
 <div id="historyModal">
   <button class="back-btn" id="backFromHistory">Back</button>
   <div id="historyContent"></div>
 </div>
 
-<!-- GROUP PHOTO MODAL -->
-<div id="groupModal">
-  <button class="back-btn" id="backFromGroup">Back</button>
-  <div id="uploadSection">
-    <input type="file" id="groupUpload" multiple>
-    <input type="text" id="uploaderName" placeholder="Your Name">
-    <button id="uploadBtn" class="btn">Upload Photo(s)</button>
-    <a href="admin.html" class="btn" style="background:red;">Admin Panel</a>
-  
+<!-- PASSWORD MODAL -->
+<div id="documentModal" class="password-modal">
+  <div class="password-box" id="passwordBox">
+    <img src="./picture/profile.jpeg" class="admin-avatar">
+    <h3>Motex Access</h3>
+
+    <div class="input-wrap">
+      <input type="password" id="documentPassword" placeholder="Enter Admin Password">
+
+      <span class="show-pass" id="togglePass">
+        <svg id="eyeOpen" viewBox="0 0 24 24">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <svg id="eyeClosed" viewBox="0 0 24 24" style="display:none">
+          <path d="M1 1l22 22"/>
+          <path d="M17.94 17.94A11 11 0 0 1 12 19c-7 0-11-7-11-7a21.8 21.8 0 0 1 5.06-5.94"/>
+        </svg>
+      </span>
+    </div>
+
+    <button id="submitPassword">Access</button>
+    <button id="closePassword">Cancel</button>
+    <p id="passwordError">Dure Giya Morrrrrr</p>
   </div>
-  <div class="gallery-grid" id="groupGallery"></div>
 </div>
 
-<!-- Main JS -->
 <script src="script.js"></script>
 
-<!-- Firebase Upload JS -->
-<script type="module" src="firebase-upload.js"></script>
+<script>
+const openDocuments=document.getElementById("openDocuments");
+const modal=document.getElementById("documentModal");
+const box=document.getElementById("passwordBox");
+const pass=document.getElementById("documentPassword");
+const error=document.getElementById("passwordError");
+const toggle=document.getElementById("togglePass");
+const eyeOpen=document.getElementById("eyeOpen");
+const eyeClosed=document.getElementById("eyeClosed");
+
+const ADMIN_PASSWORD="Motex_248052"; // change
+const DRIVE_LINK="https://drive.google.com/drive/folders/1t1Bteo5dncVYF1EZB-cHKreJJ9emfTFx"; // change
+
+const errorSound=new Audio("https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3");
+
+openDocuments.onclick=e=>{
+  e.preventDefault();
+  pass.value="";
+  error.style.display="none";
+  modal.style.display="flex";
+};
+
+toggle.onclick=()=>{
+  if(pass.type==="password"){
+    pass.type="text";
+    eyeOpen.style.display="none";
+    eyeClosed.style.display="block";
+  }else{
+    pass.type="password";
+    eyeOpen.style.display="block";
+    eyeClosed.style.display="none";
+  }
+};
+
+document.getElementById("submitPassword").onclick=()=>{
+  if(pass.value===ADMIN_PASSWORD){
+    modal.style.display="none";
+    window.location.href=DRIVE_LINK;
+  }else{
+    pass.value="";
+    error.style.display="block";
+    box.classList.add("shake");
+    setTimeout(()=>box.classList.remove("shake"),400);
+    errorSound.play();
+    if(navigator.vibrate) navigator.vibrate([200,100,200]);
+  }
+};
+
+document.getElementById("closePassword").onclick=()=>{
+  modal.style.display="none";
+  pass.value="";
+  error.style.display="none";
+};
+
+window.addEventListener("pageshow",()=>{
+  modal.style.display="none";
+  pass.value="";
+});
+</script>
+
+
+
+<!-- this is firebase connect -->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB8uW5czS8VDjqUoKGgve_G8AFpRlciQUk",
+    authDomain: "toxicgang-dab4e.firebaseapp.com",
+    projectId: "toxicgang-dab4e",
+    storageBucket: "toxicgang-dab4e.firebasestorage.app",
+    messagingSenderId: "16032929433",
+    appId: "1:16032929433:web:47d00937bfb9c5eb108a08"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 </body>
 </html>

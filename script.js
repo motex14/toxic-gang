@@ -1,4 +1,8 @@
+
+
 /* ===== BUBBLES ===== */
+
+
 const container = document.getElementById('bubbles-container');
 
 const bubbleImages = [
@@ -57,137 +61,305 @@ animateBubbles();
 
 /* ===== FRIEND DATA WITH UNIQUE PHOTOS ===== */
 const friends = [
+
+
+
+
+  
   {
     name: 'Sagor Ahmed (Kola)',
     profile: 'picture/sagor.jpeg',
-    phone: '0170000001',
-    facebook: 'https://facebook.com/sagor',
+    phone: '01773255299',
+    facebook: 'https://www.facebook.com/Sagorahmed3280',
     photos: [
-      'picture/sagor.jpeg','picture/f1_2.jpeg','picture/f1_3.jpeg','picture/f1_4.jpeg',
-      'picture/f1_5.jpeg','picture/f1_6.jpeg','picture/f1_7.jpeg','picture/f1_8.jpeg',
-      'picture/f1_9.jpeg','picture/f1_10.jpeg','picture/f1_11.jpeg','picture/f1_12.jpeg',
-      'picture/f1_13.jpeg','picture/f1_14.jpeg'
+      'picture/sagor/pic1.jpeg',
+      'picture/sagor/pic2.jpeg',
+      'picture/sagor/pic3.jpeg',
+      'picture/sagor/pic4.jpeg',
+      'picture/sagor/pic5.jpeg',
+      'picture/sagor/pic6.jpeg',
+      'picture/sagor/pic7.jpeg',
+      'picture/sagor/pic8.jpeg',
+      'picture/sagor/pic9.jpeg',
+      'picture/sagor/pic10.jpeg',
+      'picture/sagor/pic11.jpeg',
+      'picture/sagor/pic12.jpeg',
+      'picture/sagor/pic13.jpeg',
+      'picture/sagor/pic14.jpeg',
     ]
   },
   {
     name: 'Moumit Hasan (mgi)',
-    profile: 'picture/f2.jpeg',
-    phone: '0170000002',
-    facebook: 'https://facebook.com/moumit',
+    profile: 'picture/momit.jpeg',
+    phone: '01571469912',
+    facebook: 'https://www.facebook.com/moumit784',
     photos: [
-      'picture/f2_1.jpeg','picture/f2_2.jpeg','picture/f2_3.jpeg','picture/f2_4.jpeg',
-      'picture/f2_5.jpeg','picture/f2_6.jpeg','picture/f2_7.jpeg','picture/f2_8.jpeg',
-      'picture/f2_9.jpeg','picture/f2_10.jpeg','picture/f2_11.jpeg','picture/f2_12.jpeg',
-      'picture/f2_13.jpeg','picture/f2_14.jpeg'
+      'picture/momit/pic1.jpeg',
+      'picture/momit/pic2.jpeg',
+      'picture/momit/pic3.jpeg',
+      'picture/momit/pic4.jpeg',
+      'picture/momit/pic5.jpeg',
+      'picture/momit/pic6.jpeg',
+      'picture/momit/pic7.jpeg',
+      'picture/momit/pic8.jpeg',
+      'picture/momit/pic9.jpeg',
+      'picture/momit/pic10.jpeg',
+      'picture/momit/pic11.jpeg',
+      'picture/momit/pic12.jpeg',
+      'picture/momit/pic13.jpeg',
+      'picture/momit/pic14.jpeg'
     ]
   },
   {
     name: 'Morad Hosen (morga)',
-    profile: 'picture/f3.jpeg',
-    phone: '0170000003',
-    facebook: 'https://facebook.com/morad',
+    profile: 'picture/morad.jpeg',
+    phone: '01746153743',
+    facebook: 'https://www.facebook.com/md.morad.hosen.509378',
     photos: [
-      'picture/f3_1.jpeg','picture/f3_2.jpeg','picture/f3_3.jpeg','picture/f3_4.jpeg',
-      'picture/f3_5.jpeg','picture/f3_6.jpeg','picture/f3_7.jpeg','picture/f3_8.jpeg',
-      'picture/f3_9.jpeg','picture/f3_10.jpeg','picture/f3_11.jpeg','picture/f3_12.jpeg',
-      'picture/f3_13.jpeg','picture/f3_14.jpeg'
+      'picture/morad/pic1.jpeg',
+      'picture/morad/pic2.jpeg',
+      'picture/morad/pic3.jpeg',
+      'picture/morad/pic4.jpeg',
+      'picture/morad/pic5.jpeg',
+      'picture/morad/pic6.jpeg',
+      'picture/morad/pic7.jpeg',
+      'picture/morad/pic8.jpeg',
+      'picture/morad/pic9.jpeg',
+      'picture/morad/pic10.jpeg',
+      'picture/morad/pic11.jpeg',
+      'picture/morad/pic12.jpeg',
+      'picture/morad/pic13.jpeg',
+      'picture/morad/pic14.jpeg'
     ]
   },
   {
     name: 'Moinol Hasan (dam)',
-    profile: 'picture/f4.jpeg',
-    phone: '0170000004',
-    facebook: 'https://facebook.com/moinol',
+    profile: 'picture/mohin.jpeg',
+    phone: '01310334236',
+    facebook: 'https://www.facebook.com/kibriamoin0609',
     photos: [
-      'picture/f4_1.jpeg','picture/f4_2.jpeg','picture/f4_3.jpeg','picture/f4_4.jpeg',
-      'picture/f4_5.jpeg','picture/f4_6.jpeg','picture/f4_7.jpeg','picture/f4_8.jpeg',
-      'picture/f4_9.jpeg','picture/f4_10.jpeg','picture/f4_11.jpeg','picture/f4_12.jpeg',
-      'picture/f4_13.jpeg','picture/f4_14.jpeg'
+      'picture/moin/pic1.jpeg',
+      'picture/moin/pic2.jpeg',
+      'picture/moin/pic3.jpeg',
+      'picture/moin/pic4.jpeg',
+      'picture/moin/pic5.jpeg',
+      'picture/moin/pic6.jpeg',
+      'picture/moin/pic7.jpeg',
+      'picture/moin/pic8.jpeg',
+      'picture/moin/pic9.jpeg',
+      'picture/moin/pic10.jpeg',
+      'picture/moin/pic11.jpeg',
+      'picture/moin/pic12.jpeg',
+      'picture/moin/pic13.jpeg',
+      'picture/moin/pic14.jpeg'
     ]
   },
   {
     name: 'Mohammod naim (ban)',
-    profile: 'picture/f5.jpeg',
-    phone: '0170000005',
-    facebook: 'https://facebook.com/naim',
+    profile: 'picture/naim.jpeg',
+    phone: '01789389942',
+    facebook: 'https://www.facebook.com/arafat9942',
     photos: [
-      'picture/f5_1.jpeg','picture/f5_2.jpeg','picture/f5_3.jpeg','picture/f5_4.jpeg',
-      'picture/f5_5.jpeg','picture/f5_6.jpeg','picture/f5_7.jpeg','picture/f5_8.jpeg',
-      'picture/f5_9.jpeg','picture/f5_10.jpeg','picture/f5_11.jpeg','picture/f5_12.jpeg',
-      'picture/f5_13.jpeg','picture/f5_14.jpeg'
+      'picture/naim/pic1.jpeg',
+      'picture/naim/pic2.jpeg',
+      'picture/naim/pic3.jpeg',
+      'picture/naim/pic4.jpeg',
+      'picture/naim/pic5.jpeg',
+      'picture/naim/pic6.jpeg',
+      'picture/naim/pic7.jpeg',
+      'picture/naim/pic8.jpeg',
+      'picture/naim/pic9.jpeg',
+      'picture/naim/pic10.jpeg',
+      'picture/naim/pic11.jpeg',
+      'picture/naim/pic12.jpeg',
+      'picture/naim/pic13.jpeg',
+      'picture/naim/pic14.jpeg'
     ]
   },
   {
     name: 'Md Rahim (Ram)',
-    profile: 'picture/f6.jpeg',
-    phone: '0170000006',
-    facebook: 'https://facebook.com/rahim',
+    profile: 'picture/rahim.jpeg',
+    phone: '01608788446',
+    facebook: 'https://www.facebook.com/txcrahim01',
     photos: [
-      'picture/f6_1.jpeg','picture/f6_2.jpeg','picture/f6_3.jpeg','picture/f6_4.jpeg',
-      'picture/f6_5.jpeg','picture/f6_6.jpeg','picture/f6_7.jpeg','picture/f6_8.jpeg',
-      'picture/f6_9.jpeg','picture/f6_10.jpeg','picture/f6_11.jpeg','picture/f6_12.jpeg',
-      'picture/f6_13.jpeg','picture/f6_14.jpeg'
+      'picture/rahim/pic1.jpeg',
+      'picture/rahim/pic2.jpeg',
+      'picture/rahim/pic3.jpeg',
+      'picture/rahim/pic4.jpeg',
+      'picture/rahim/pic5.jpeg',
+      'picture/rahim/pic6.jpeg',
+      'picture/rahim/pic7.jpeg',
+      'picture/rahim/pic8.jpeg',
+      'picture/rahim/pic9.jpeg',
+      'picture/rahim/pic10.jpeg',
+      'picture/rahim/pci11.jpeg',
+      'picture/rahim/pic12.jpeg',
+      'picture/rahim/pic13.jpeg',
+      'picture/rahim/pic14.jpeg',
+     
+
     ]
   },
   {
     name: 'Moin Hasan (kala)',
-    profile: 'picture/f7.jpeg',
-    phone: '0170000007',
-    facebook: 'https://facebook.com/moin7',
+    profile: 'picture/moin.jpeg',
+    phone: '01948862269',
+    facebook: 'https://www.facebook.com/md.mohin.688551',
     photos: [
-      'picture/f7_1.jpeg','picture/f7_2.jpeg','picture/f7_3.jpeg','picture/f7_4.jpeg',
-      'picture/f7_5.jpeg','picture/f7_6.jpeg','picture/f7_7.jpeg','picture/f7_8.jpeg',
-      'picture/f7_9.jpeg','picture/f7_10.jpeg','picture/f7_11.jpeg','picture/f7_12.jpeg',
-      'picture/f7_13.jpeg','picture/f7_14.jpeg'
+      'picture/mohin/pic1.jpeg',
+      'picture/mohin/pic2.jpeg',
+      'picture/mohin/pic3.jpeg',
+      'picture/mohin/pic4.jpeg',
+      'picture/mohin/pic5.jpeg',
+      'picture/mohin/pic6.jpeg',
+      'picture/mohin/pic7.jpeg',
+      'picture/mohin/pic8.jpeg',
+      'picture/mohin/pic9.jpeg',
+      'picture/mohin/pic10.jpeg',
+      'picture/mohin/pic11.jpeg',
+      'picture/mohin/pic12.jpeg',
+      'picture/mohin/pic13.jpeg',
+      'picture/mohin/pic14.jpeg'
     ]
   },
   {
     name: 'Saif Ahmed (Foisa)',
-    profile: 'picture/f8.jpeg',
-    phone: '0170000008',
-    facebook: 'https://facebook.com/saif',
+    profile: 'picture/saif.jpeg',
+    phone: '01733884503',
+    facebook: 'https://www.facebook.com/saifahmed1081',
     photos: [
-      'picture/f8_1.jpeg','picture/f8_2.jpeg','picture/f8_3.jpeg','picture/f8_4.jpeg',
-      'picture/f8_5.jpeg','picture/f8_6.jpeg','picture/f8_7.jpeg','picture/f8_8.jpeg',
-      'picture/f8_9.jpeg','picture/f8_10.jpeg','picture/f8_11.jpeg','picture/f8_12.jpeg',
-      'picture/f8_13.jpeg','picture/f8_14.jpeg'
+      'picture/saif/pic1.jpeg',
+      'picture/saif/pic2.jpeg',
+      'picture/saif/pic3.jpeg',
+      'picture/saif/pic4.jpeg',
+      'picture/saif/pic5.jpeg',
+      'picture/saif/pic6.jpeg',
+      'picture/saif/pic7.jpeg',
+      'picture/saif/pic8.jpeg',
+      'picture/saif/pic9.jpeg',
+      'picture/saif/pic10.jpeg',
+      'picture/saif/pic11.jpeg',
+      'picture/saif/pic12.jpeg',
+      'picture/saif/pic13.jpeg',
+      'picture/saif/pic14.jpeg'
     ]
   },
   {
     name: 'Shovon Majomder (mgi buzz)',
-    profile: 'picture/f9.jpeg',
-    phone: '0170000009',
-    facebook: 'https://facebook.com/shovon',
+    profile: 'picture/sovon.jpeg',
+    phone: '01878895843',
+    facebook: 'https://www.facebook.com/iss.shovon',
     photos: [
-      'picture/f9_1.jpeg','picture/f9_2.jpeg','picture/f9_3.jpeg','picture/f9_4.jpeg',
-      'picture/f9_5.jpeg','picture/f9_6.jpeg','picture/f9_7.jpeg','picture/f9_8.jpeg',
-      'picture/f9_9.jpeg','picture/f9_10.jpeg','picture/f9_11.jpeg','picture/f9_12.jpeg',
-      'picture/f9_13.jpeg','picture/f9_14.jpeg'
+      'picture/sovon/pic1.jpeg',
+      'picture/sovon/pic2.jpeg',
+      'picture/sovon/pic3.jpeg',
+      'picture/sovon/pic4.jpeg',
+      'picture/sovon/pic5.jpeg',
+      'picture/sovon/pic6.jpeg',
+      'picture/sovon/pic7.jpeg',
+      'picture/sovon/pic8.jpeg',
+      'picture/sovon/pic9.jpeg',
+      'picture/sovon/pic10.jpeg',
+      'picture/sovon/pic11.jpeg',
+      'picture/sovon/pic12.jpeg',
+      'picture/sovon/pic13.jpeg',
+      'picture/sovon/pic14.jpeg'
     ]
   },
   {
     name: 'Samad Islam (moda)',
-    profile: 'picture/f10.jpeg',
-    phone: '0170000010',
-    facebook: 'https://facebook.com/samad',
+    profile: 'picture/samad.jpeg',
+    phone: '01941873645',
+    facebook: 'https://www.facebook.com/samad.islam.131198',
     photos: [
-      'picture/f10_1.jpeg','picture/f10_2.jpeg','picture/f10_3.jpeg','picture/f10_4.jpeg',
-      'picture/f10_5.jpeg','picture/f10_6.jpeg','picture/f10_7.jpeg','picture/f10_8.jpeg',
-      'picture/f10_9.jpeg','picture/f10_10.jpeg','picture/f10_11.jpeg','picture/f10_12.jpeg',
-      'picture/f10_13.jpeg','picture/f10_14.jpeg'
+      'picture/samad/pic1.jpeg',
+      'picture/samad/pic2.jpeg',
+      'picture/samad/pic3.jpeg',
+      'picture/samad/pic4.jpeg',
+      'picture/samad/pic5.jpeg',
+      'picture/samad/pic6.jpeg',
+      'picture/samad/pic7.jpeg',
+      'picture/samad/pic8.jpeg',
+      'picture/samad/pic9.jpeg',
+      'picture/samad/pic10.jpeg',
+      'picture/samad/pic11.jpeg',
+      'picture/samad/pic12.jpeg',
+      'picture/samad/pic13.jpeg',
+      'picture/samad/pic14.jpeg'
     ]
   },
+
+
+  {
+    name: 'Mehedi hasan (Motex)',
+    profile: 'picture/mehedi.jpeg',
+    phone: '01410248052',
+    facebook: 'https://www.facebook.com/mehedimotex',
+    photos: [
+      'picture/mehedi/pic1.jpeg',
+      'picture/mehedi/pic2.jpeg',
+      'picture/mehedi/pic3.jpeg',
+      'picture/mehedi/pic4.jpeg',
+      'picture/mehedi/pic5.jpeg',
+      'picture/mehedi/pic6.jpeg',
+      'picture/mehedi/pic7.jpeg',
+      'picture/mehedi/pic8.jpeg',
+      'picture/mehedi/pic9.jpeg',
+      'picture/mehedi/pic10.jpeg',
+      'picture/mehedi/pic11.jpeg',
+      'picture/mehedi/pic12.jpeg',
+      'picture/mehedi/pic13.jpeg',
+      'picture/mehedi/pic14.jpeg',
+    ]
+  },
+
+
   {
     name: 'group',
     profile: 'picture/bg.jpeg',
-    phone: '01560041417',
+    phone: 'Group Photos',
     
-    facebook: 'https://facebook.com/mehedimotex',
+   
     photos: [
-      'picture/group_1.jpeg','picture/group_2.jpeg','picture/group_3.jpeg','picture/group_4.jpeg',
-      'picture/group_5.jpeg','picture/group_6.jpeg','picture/group_7.jpeg','picture/group_8.jpeg',
-      'picture/group_9.jpeg','picture/group_10.jpeg','picture/group_11.jpeg','picture/group_12.jpeg',
-      'picture/group_13.jpeg','picture/group_14.jpeg'
+      'picture/group/pic1.jpg',
+      'picture/group/pic2.jpg',
+      'picture/group/pic3.jpg',
+      'picture/group/pic4.jpg',
+      'picture/group/pic5.jpg',
+      'picture/group/pic6.jpeg',
+      'picture/group/pic7.jpeg',
+      'picture/group/pic8.jpg',
+      'picture/group/pic9.jpg',
+      'picture/group/pic10.jpeg',
+      'picture/group/pic11.jpeg',
+      'picture/group/pic12.jpeg',
+      'picture/group/pic13.jpg',
+      'picture/group/pic14.jpg',
+      'picture/group/pic15.jpg',
+      'picture/group/pic16.jpg',
+      'picture/group/pic17.jpg',
+      'picture/group/pic18.jpg',
+      'picture/group/pic19.jpg',
+      'picture/group/pic20.jpg',
+      'picture/group/pic21.jpg',
+      'picture/group/pic22.jpg',
+      'picture/group/pic23.jpg',
+      'picture/group/pic24.jpg',
+      'picture/group/pic25.jpg',
+      'picture/group/pic26.jpg',
+      'picture/group/pic27.jpg',
+      'picture/group/pic28.jpg',
+      'picture/group/pic29.jpg',
+      'picture/group/pic30.jpg',
+      'picture/group/pic31.jpg',
+      'picture/group/pic32.jpg',
+      'picture/group/pic33.jpg',
+      'picture/group/pic34.jpg',
+      'picture/group/pic35.jpg',
+      'picture/group/pic36.jpg',
+      
+    
+    
     ]
   }
 ];
@@ -227,10 +399,10 @@ document.getElementById("backFromHistory").onclick = ()=>{
   historyModal.style.display = "none";
   picturesModal.style.display = "block";
 };
-document.getElementById("openGroup").onclick = ()=>{
-  document.querySelector(".center-container").style.display = "none";
-  groupModal.style.display = "block";
-};
+// document.getElementById("openGroup").onclick = ()=>{
+//   document.querySelector(".center-container").style.display = "none";
+//   groupModal.style.display = "block";
+// };
 document.getElementById("backFromGroup").onclick = ()=>{
   groupModal.style.display = "none";
   document.querySelector(".center-container").style.display = "flex";
@@ -288,4 +460,9 @@ uploadBtn.onclick = ()=>{
     };
     reader.readAsDataURL(f);
   }
+
+
+  
 };
+
+
